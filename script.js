@@ -18,6 +18,26 @@ function getHumanChoice(re = false) {
     return choice;
 }
 
+function playRound(humanChoice, computerChoice) {
+    
+    if (
+        (humanChoice === "rock" && computerChoice === "paper")
+        ||
+        (humanChoice === "paper" && computerChoice === "scissors")
+        ||
+        (humanChoice === "scissors" && computerChoice === "rock")
+    ) {
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        computerScore++;
+    } else if (
+        (humanChoice === computerChoice)
+    ) {
+        console.log(`Tie! Computer chose ${computerChoice}, same as you!`);
+    } else {
+        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        humanScore++;
+    }
+}
 function getResult(humanScore, computerScore) {
     if (humanScore > computerScore) {
         return `You win! ${humanScore}-${computerScore}`;
@@ -32,26 +52,6 @@ function getResult(humanScore, computerScore) {
 //     let humanScore = 0,
 //     computerScore = 0;
 
-//     function playRound(humanChoice, computerChoice) {
-        
-//         if (
-//             (humanChoice === "rock" && computerChoice === "paper")
-//             ||
-//             (humanChoice === "paper" && computerChoice === "scissors")
-//             ||
-//             (humanChoice === "scissors" && computerChoice === "rock")
-//         ) {
-//             console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-//             computerScore++;
-//         } else if (
-//             (humanChoice === computerChoice)
-//         ) {
-//             console.log(`Tie! Computer chose ${computerChoice}, same as you!`);
-//         } else {
-//             console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-//             humanScore++;
-//         }
-//     }
 
 //     for (let i = 0; i < 5; i++) {
 //         playRound(getComputerChoice(), getHumanChoice());
