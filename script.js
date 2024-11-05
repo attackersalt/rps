@@ -18,8 +18,24 @@ function getHumanChoice(re = false) {
     return choice;
 }
 
+
 function playRound(humanChoice, computerChoice) {
+    function endGame() {
+        gameOverBox.textContent = getResult(humanScore, computerScore) + "\n"; 
+        gameOverBox.textContent += "GAME OVER! You may restart the game by clicking any button.\n"
+
+        computerScore = humanScore = 0;
+    }
     
+    
+    roundNumber++;
+    
+    
+    // if endGame has been called, round number will now exceed 5
+    roundNumber = roundNumber > 5 ? 1 : roundNumber;
+
+
+    const gameOverBox = document.querySelector("#game-over");
     const messageBox = document.querySelector("#message");
     if (
         (humanChoice === "rock" && computerChoice === "paper")
@@ -28,18 +44,25 @@ function playRound(humanChoice, computerChoice) {
         ||
         (humanChoice === "scissors" && computerChoice === "rock")
     ) {
-        messageBox.textContent = (`You lose! ${computerChoice} beats ${humanChoice}`);
+        messageBox.textContent = `Round ${roundNumber}:\n` +
+        (`You lose! ${computerChoice} beats ${humanChoice}`);
         computerScore++;
     } else if (
         (humanChoice === computerChoice)
     ) {
-        messageBox.textContent = (`Tie! Computer chose ${computerChoice}, same as you!`);
+        messageBox.textContent = `Round ${roundNumber}:\n` +
+        (`Tie! Computer chose ${computerChoice}, same as you!`);
+
     } else {
-        messageBox.textContent = (`You win! ${humanChoice} beats ${computerChoice}`);
+        messageBox.textContent = `Round ${roundNumber}:\n` +
+        (`You win! ${humanChoice} beats ${computerChoice}`);
         humanScore++;
     }
 
+    gameOverBox.textContent = "ONGOING GAME: YOU VS COMPUTER";
     updateScores(humanScore, computerScore);
+
+    if (roundNumber === 5) endGame();
 }
 function getResult(humanScore, computerScore) {
     if (humanScore > computerScore) {
@@ -71,7 +94,8 @@ function updateScores(humanScore, computerScore) {
 // variables and stuff
 
 let humanScore = 0,
-    computerScore = 0;
+    computerScore = 0,
+    roundNumber = 0;
 const humanChoiceButtonsContainer = document
 .querySelector('#choice-button-container');
 
