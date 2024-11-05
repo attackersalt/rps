@@ -48,6 +48,13 @@ function getResult(humanScore, computerScore) {
     }
 }
 
+function updateScores(humanScore, computerScore) {
+    const humanScoreElement = document.querySelector("#player-score");
+    const computerScoreElement = document.querySelector("#computer-score")
+    humanScoreElement.textContent = humanScore;
+    computerScoreElement.textContent = computerScore;
+}
+
 // function playGame() {
     
 
