@@ -20,6 +20,7 @@ function getHumanChoice(re = false) {
 
 function playRound(humanChoice, computerChoice) {
     
+    const messageBox = document.querySelector("#message");
     if (
         (humanChoice === "rock" && computerChoice === "paper")
         ||
@@ -27,16 +28,18 @@ function playRound(humanChoice, computerChoice) {
         ||
         (humanChoice === "scissors" && computerChoice === "rock")
     ) {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        messageBox.textContent = (`You lose! ${computerChoice} beats ${humanChoice}`);
         computerScore++;
     } else if (
         (humanChoice === computerChoice)
     ) {
-        console.log(`Tie! Computer chose ${computerChoice}, same as you!`);
+        messageBox.textContent = (`Tie! Computer chose ${computerChoice}, same as you!`);
     } else {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        messageBox.textContent = (`You win! ${humanChoice} beats ${computerChoice}`);
         humanScore++;
     }
+
+    updateScores(humanScore, computerScore);
 }
 function getResult(humanScore, computerScore) {
     if (humanScore > computerScore) {
