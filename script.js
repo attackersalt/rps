@@ -49,9 +49,7 @@ function getResult(humanScore, computerScore) {
 }
 
 // function playGame() {
-//     let humanScore = 0,
-//     computerScore = 0;
-
+    
 
 //     for (let i = 0; i < 5; i++) {
 //         playRound(getComputerChoice(), getHumanChoice());
@@ -62,4 +60,17 @@ function getResult(humanScore, computerScore) {
 
 // variables and stuff
 
-playGame(); // play the game as soon as page loads
+let humanScore = 0,
+    computerScore = 0;
+const humanChoiceButtonsContainer = document
+.querySelector('#choice-button-container');
+
+humanChoiceButtonsContainer.addEventListener('click', e => {
+    switch (e.target.id) {
+        case 'rock':
+            case 'paper':
+                case 'scissors':
+                    playRound(e.target.id, getComputerChoice());
+                    break;
+    }
+})
